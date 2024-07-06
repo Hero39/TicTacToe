@@ -18,8 +18,7 @@ def create_grid():
         print('-' * 5)
 
 # def move_in_grid(x, y):
-    
-    
+
 # def move_with_key():
 
 create_grid()
@@ -27,6 +26,3 @@ create_grid()
 
 def game():
     playing = True
-    
-    
-    
