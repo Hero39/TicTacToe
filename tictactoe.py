@@ -17,9 +17,6 @@ def create_grid():
         print('|'.join(row))
         print('-' * 5)
 
-# def move_in_grid(x, y):
-
-# def move_with_key():
 
 
 def game(grid):
@@ -34,13 +31,20 @@ def game(grid):
         create_grid()
         row = input("enter row (0-2): ")
 
-        if row >= 0 and row <= 2:
+        if int(row) >= 0 and int(row) <= 2 :
             col = input("enter column (0-2): ")
-            if col >= 0 and col <= 2:
+            if int(col) >= 0 and int(col) <= 2:
                 rows_fields = [*grid]
                 fields = [*rows_fields]
-                
-                player_1 = False
+
+                if player_1:
+                    # Draw 'X' on flied
+                    player_1 = False
+                else:
+                    # Draw 'O' on field
+                    player_2 = True
+            else:
+                print("Please enter an valid column")
         else:
             print("Please enter an valid row")
             
