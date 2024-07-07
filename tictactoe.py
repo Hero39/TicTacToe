@@ -22,10 +22,13 @@ def create_grid(grid):
 # Checks the winner of the game
 def check_winner(grid):
     for i in range(3):
+        # Check rows and columns
         if grid[i][0] == grid[i][1] == grid[i][2] != ' ':
             return grid[i][0]
         elif grid[0][i] == grid[1][i] == grid[2][i] != ' ':
             return grid[0][i]
+
+        # Check diagonals
         elif grid[0][0] == grid[1][1] == grid[2][2] != ' ':
             return grid[2][2]
         elif grid[0][2] == grid[1][1] == grid[2][0] != ' ':
@@ -34,7 +37,7 @@ def check_winner(grid):
         if all(grid[i][j] != ' ' for i in range(3) for j in range(3)):
             return 'Tie'
 
-        return None
+    return None
 
 def game(grid):
     playing = True
@@ -56,13 +59,13 @@ def game(grid):
 
 
     while playing:
-        print(field_completion)
+        create_grid(field_completion)
+
         row = int(input("Enter row (0-2): "))
         col = int(input("Enter column (0-2): "))
 
-        # Check if input is valid row
+        # Check if input is valid field
         if 0 <= row <= 2 and 0 <= col <= 2 and field_completion[row][col] == ' ':
-                print(row, col)
 
                 if player_1:
                     # Draw 'X' on flied
@@ -72,29 +75,34 @@ def game(grid):
                     # Draw 'O' on field
                     grid[row][col] = 'O'
                     player_1 = True
+
+        # elif type(row) != int or type(col) != int:
+            # print(f"Input is not an integer: row = {row} and col = {col}")
         else:
             print(f"Invalid input: row = {row} and col = {col} ")
 
-        if check_winner(field_completion) != None:
+        winner = check_winner(field_completion)
+
+        if winner is not None:
             playing = False
 
-    if playing == False:
-        winner = check_winner(field_completion)
-        if winner == 'X':
-            print("Player X won the game!")
-        elif winner == 'O':
-            print("Player O won the game!")
-        else:
-            print("It was a tie!")
+    create_grid(field_completion)
+
+
+    if winner == 'X':
+        print("Player X won the game!")
+    elif winner == 'O':
+        print("Player O won the game!")
+    else:
+        print("It was a tie!")
 
 def main():
     grid = new_grid()
-    create_grid(grid)
     game(grid)
     new_round = input("Play again (Y/N)").upper()
 
     while new_round == "Y":
-        grid = create_grid()
+        grid = new_grid()
         game(grid)
 
 if __name__ == "__main__":
