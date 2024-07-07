@@ -1,9 +1,11 @@
 # Name: Hero Brouwer
 # Description: This program implements Tic-Tac-Toe.
-# https://www.youngwonks.com/blog/tic-tac-toe-python
+# For Future: Instead of two individual inputs, take one input which is a
+# coordinate.
 
 
 
+# Creates new empty grid for Tic Tac Toe
 def new_grid():
     grid = [
         [' ', ' ', ' '],
@@ -13,6 +15,7 @@ def new_grid():
     return grid
 
 
+# Creates the grid and the lines
 def create_grid(grid):
     for row in grid:
         print('|'.join(row))
@@ -39,33 +42,33 @@ def check_winner(grid):
 
     return None
 
+# The game
 def game(grid):
     playing = True
-    field_completion = grid
-
-    list_rows = []
-    list_cols = []
+    field = grid
     player_1 = True
-
-    turn = "Player 1"
 
     print("Welcome to Tic Tac Toe")
 
-    if player_1:
-        turn = "Player 1"
-    else:
-        turn = "Player 2"
-    print(f"{turn} needs to make a move")
-
 
     while playing:
-        create_grid(field_completion)
+        create_grid(field)
 
-        row = int(input("Enter row (0-2): "))
-        col = int(input("Enter column (0-2): "))
+        if player_1:
+            print("Player 1 needs to make a move")
+        else:
+            print("Player 2 needs to make a move")
+
+        row1 = input("Enter row (0-2): ")
+        col1 = input("Enter column (0-2): ")
+        row = int(row1)
+        col = int(col1)
+
+        check_int_field = row1.isdigit() and col1.isdigit()
+
 
         # Check if input is valid field
-        if 0 <= row <= 2 and 0 <= col <= 2 and field_completion[row][col] == ' ':
+        if check_int_field and 0 <= int(row) <= 2 and 0 <= int(col) <= 2 and field[row][col] == ' ':
 
                 if player_1:
                     # Draw 'X' on flied
@@ -81,12 +84,12 @@ def game(grid):
         else:
             print(f"Invalid input: row = {row} and col = {col} ")
 
-        winner = check_winner(field_completion)
+        winner = check_winner(field)
 
         if winner is not None:
             playing = False
 
-    create_grid(field_completion)
+    create_grid(field)
 
 
     if winner == 'X':
