@@ -71,29 +71,31 @@ def game(grid):
         else:
             print("Player 2 needs to make a move")
 
-        row_str = input("Enter row (0-2): ")
-        col_str = input("Enter column (0-2): ")
-        row = int(row_str)
-        col = int(col_str)
-
-        check_int_field = row_str.isdigit() and col_str.isdigit()
+        print("Give an coordinate of a field (0-2) where.")
+        print("Row and column are seperated by a comma.")
+        print("Example: 1,2 symbolizes the field in row 1 and column 2.")
+        row_str, col_str = input("Enter row and column (0-2): ").split(",")
 
         # Check if input is valid field
-        if check_int_field and 0 <= row <= 2 and 0 <= col <= 2 and field[row][col] == ' ':
+        try:
+            row = int(row_str)
+            col = int(col_str)
 
-                if player_1:
-                    # Draw 'X' on flied
-                    grid[row][col] = 'X'
-                    player_1 = False
-                else:
-                    # Draw 'O' on field
-                    grid[row][col] = 'O'
-                    player_1 = True
+            if 0 <= row <= 2 and 0 <= col <= 2 and field[row][col] == ' ':
 
-        # elif type(row) != int or type(col) != int:
-            # print(f"Input is not an integer: row = {row} and col = {col}")
-        else:
-            print(f"Invalid input: row = {row} and col = {col} ")
+                    if player_1:
+                        # Draw 'X' on flied
+                        grid[row][col] = 'X'
+                        player_1 = False
+                    else:
+                        # Draw 'O' on field
+                        grid[row][col] = 'O'
+                        player_1 = True
+
+            else:
+                print(f"Values too high/too low: row = {row} and col = {col} ")
+        except:
+            print(f"Error: row = {row_str} & col = {col_str} ")
 
         winner = check_winner(field)
 
@@ -112,6 +114,8 @@ def main():
     while new_round == "Y":
         grid = new_grid()
         game(grid)
+        new_round = input("Play again (Y/N)").upper()
+
 
 if __name__ == "__main__":
     main()
