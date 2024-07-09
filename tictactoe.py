@@ -42,6 +42,19 @@ def check_winner(grid):
 
     return None
 
+
+# def check_input(row, col):
+
+
+def print_winner(winner):
+    if winner == 'X':
+        print("Player X won the game!")
+    elif winner == 'O':
+        print("Player O won the game!")
+    else:
+        print("It was a tie!")
+
+
 # The game
 def game(grid):
     playing = True
@@ -49,7 +62,6 @@ def game(grid):
     player_1 = True
 
     print("Welcome to Tic Tac Toe")
-
 
     while playing:
         create_grid(field)
@@ -59,16 +71,15 @@ def game(grid):
         else:
             print("Player 2 needs to make a move")
 
-        row1 = input("Enter row (0-2): ")
-        col1 = input("Enter column (0-2): ")
-        row = int(row1)
-        col = int(col1)
+        row_str = input("Enter row (0-2): ")
+        col_str = input("Enter column (0-2): ")
+        row = int(row_str)
+        col = int(col_str)
 
-        check_int_field = row1.isdigit() and col1.isdigit()
-
+        check_int_field = row_str.isdigit() and col_str.isdigit()
 
         # Check if input is valid field
-        if check_int_field and 0 <= int(row) <= 2 and 0 <= int(col) <= 2 and field[row][col] == ' ':
+        if check_int_field and 0 <= row <= 2 and 0 <= col <= 2 and field[row][col] == ' ':
 
                 if player_1:
                     # Draw 'X' on flied
@@ -91,13 +102,7 @@ def game(grid):
 
     create_grid(field)
 
-
-    if winner == 'X':
-        print("Player X won the game!")
-    elif winner == 'O':
-        print("Player O won the game!")
-    else:
-        print("It was a tie!")
+    print_winner(winner)
 
 def main():
     grid = new_grid()
