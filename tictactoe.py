@@ -73,8 +73,8 @@ def game(grid):
 
         print("Give an coordinate of a field (0-2) where.")
         print("Row and column are seperated by a comma.")
-        print("Example: 1,2 symbolizes the field in row 1 and column 2.")
-        row_str, col_str = input("Enter row and column (0-2): ").split(",")
+        print("Example: (1,2 symbolizes the field in row 1 and column 2.")
+        row_str, col_str, *_ = input("Enter row and column (0-2): ").split(",")
 
         # Check if input is valid field
         try:
